@@ -23,6 +23,7 @@
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^viewReuseGroup)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));

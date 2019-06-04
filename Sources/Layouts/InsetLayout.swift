@@ -21,32 +21,35 @@ open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                 alignment: Alignment = Alignment.fill,
                 flexibility: Flexibility? = nil,
                 viewReuseId: String? = nil,
+                viewReuseGroup: String? = nil,
                 sublayout: Layout,
                 config: ((V) -> Void)? = nil) {
         self.insets = insets
         self.sublayout = sublayout
-        super.init(alignment: alignment, flexibility: flexibility ?? sublayout.flexibility, viewReuseId: viewReuseId, config: config)
+        super.init(alignment: alignment, flexibility: flexibility ?? sublayout.flexibility, viewReuseId: viewReuseId, viewReuseGroup: viewReuseGroup, config: config)
     }
 
     init(insets: EdgeInsets,
          alignment: Alignment = Alignment.fill,
          flexibility: Flexibility? = nil,
          viewReuseId: String? = nil,
+         viewReuseGroup: String? = nil,
          sublayout: Layout,
          viewClass: V.Type?,
          config: ((V) -> Void)? = nil) {
         self.insets = insets
         self.sublayout = sublayout
-        super.init(alignment: alignment, flexibility: flexibility ?? sublayout.flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? V.self, config: config)
+        super.init(alignment: alignment, flexibility: flexibility ?? sublayout.flexibility, viewReuseId: viewReuseId, viewReuseGroup: viewReuseGroup, viewClass: viewClass ?? V.self, config: config)
     }
 
     public convenience init(inset: CGFloat,
                             alignment: Alignment = Alignment.fill,
                             viewReuseId: String? = nil,
+                            viewReuseGroup: String? = nil,
                             sublayout: Layout,
                             config: ((V) -> Void)? = nil) {
         let insets = EdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        self.init(insets: insets, alignment: alignment, viewReuseId: viewReuseId, sublayout: sublayout, config: config)
+        self.init(insets: insets, alignment: alignment, viewReuseId: viewReuseId, viewReuseGroup: viewReuseGroup, sublayout: sublayout, config: config)
     }
 
     open func measurement(within maxSize: CGSize) -> LayoutMeasurement {

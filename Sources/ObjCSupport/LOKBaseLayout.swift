@@ -52,4 +52,8 @@ open class LOKBaseLayout: NSObject, LOKLayout {
     public var viewReuseId: String? {
         return layout.viewReuseId
     }
+
+    public var viewReuseGroup: String? {
+        return layout.viewReuseGroup
+    }
 }

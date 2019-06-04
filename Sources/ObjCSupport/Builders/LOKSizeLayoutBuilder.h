@@ -25,6 +25,7 @@
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewReuseGroup)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));

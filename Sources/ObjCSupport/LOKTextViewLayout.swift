@@ -25,6 +25,7 @@ import UIKit
                       layoutAlignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
+                      viewReuseGroup: String? = nil,
                       viewClass: UITextView.Type? = nil,
                       configure: ((UITextView) -> Void)? = nil) {
         self.text = text ?? ""
@@ -43,6 +44,7 @@ import UIKit
             layoutAlignment: self.layoutAlignment.alignment,
             flexibility: flexibility?.flexibility ?? TextViewLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             config: self.configure))
     }
@@ -54,6 +56,7 @@ import UIKit
                       layoutAlignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
+                      viewReuseGroup: String? = nil,
                       viewClass: UITextView.Type? = nil,
                       configure: ((UITextView) -> Void)? = nil) {
         self.text = nil
@@ -72,6 +75,7 @@ import UIKit
             layoutAlignment: self.layoutAlignment.alignment,
             flexibility: flexibility?.flexibility ?? TextViewLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             config: self.configure))
     }

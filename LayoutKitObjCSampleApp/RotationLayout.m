@@ -24,13 +24,14 @@
 
 @implementation RotationLayout
 
-- (instancetype)initWithSublayout:(id<LOKLayout>)sublayout alignment:(LOKAlignment *)alignment viewReuseId:(NSString *)viewReuseId {
+- (instancetype)initWithSublayout:(id<LOKLayout>)sublayout alignment:(LOKAlignment *)alignment viewReuseId:(NSString *)viewReuseId viewReuseGroup:(NSString *)viewReuseGroup {
     if (self = [super init]) {
         _sublayout = sublayout;
         _alignment = alignment;
         _needsView = YES;
         _flexibility = sublayout.flexibility;
         _viewReuseId = viewReuseId;
+        _viewReuseGroup = viewReuseGroup;
     }
     return self;
 }

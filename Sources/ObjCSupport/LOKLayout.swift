@@ -16,6 +16,7 @@ import CoreGraphics
     @objc func configureView(_ view: View)
     @objc var flexibility: LOKFlexibility { get }
     @objc var viewReuseId: String? { get }
+    @objc var viewReuseGroup: String? { get }
 }
 
 extension LOKLayout {

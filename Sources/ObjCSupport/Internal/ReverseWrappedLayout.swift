@@ -38,6 +38,10 @@ class ReverseWrappedLayout: Layout {
         return layout.viewReuseId
     }
 
+    var viewReuseGroup: String? {
+        return layout.viewReuseGroup
+    }
+
     let layout: LOKLayout
     init(layout: LOKLayout) {
         self.layout = layout

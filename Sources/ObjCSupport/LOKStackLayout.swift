@@ -56,6 +56,7 @@ extension LOKStackLayoutDistribution {
                       flexibility: LOKFlexibility? = nil,
                       viewClass: View.Type? = nil,
                       viewReuseId: String? = nil,
+                      viewReuseGroup: String? = nil,
                       sublayouts: [LOKLayout]?,
                       configure: ((View) -> Void)? = nil) {
         self.axis = axis
@@ -72,6 +73,7 @@ extension LOKStackLayoutDistribution {
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             sublayouts: self.sublayouts.map { $0.unwrapped },
             config: self.configure))

@@ -25,6 +25,7 @@ import UIKit
                       alignment: LOKAlignment?,
                       flexibility: LOKFlexibility?,
                       viewReuseId: String?,
+                      viewReuseGroup: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
         self.attributedString = attributedString
@@ -43,6 +44,7 @@ import UIKit
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             config: self.configure)
 
@@ -56,6 +58,7 @@ import UIKit
                       alignment: LOKAlignment?,
                       flexibility: LOKFlexibility?,
                       viewReuseId: String?,
+                      viewReuseGroup: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
         self.string = string
@@ -74,6 +77,7 @@ import UIKit
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             config: self.configure)
         super.init(layout: layout)

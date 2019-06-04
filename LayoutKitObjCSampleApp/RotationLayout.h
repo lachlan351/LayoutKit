@@ -15,9 +15,10 @@
 @property (nonatomic, nonnull, readonly) LOKAlignment *alignment;
 @property (nonatomic, nonnull, readonly) LOKFlexibility *flexibility;
 @property (nonatomic, copy, nullable, readonly) NSString *viewReuseId;
+@property (nonatomic, copy, nullable, readonly) NSString *viewReuseGroup;
 @property (nonatomic, readonly) BOOL needsView;
 
-- (nonnull instancetype)initWithSublayout:(nonnull id<LOKLayout>)sublayout alignment:(nullable LOKAlignment *)alignment viewReuseId:(nullable NSString *)viewReuseId;
+- (nonnull instancetype)initWithSublayout:(nonnull id<LOKLayout>)sublayout alignment:(nullable LOKAlignment *)alignment viewReuseId:(nullable NSString *)viewReuseId viewReuseGroup:(nullable NSString *)viewReuseGroup;
 
 @end
 
