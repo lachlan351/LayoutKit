@@ -160,7 +160,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
 public class LabelLayoutDefaults {
     public static let defaultNumberOfLines = 0
-    public static let defaultFont = UILabel().font ?? UIFont.systemFont(ofSize: 17)
+    public static let defaultFont = UIFont.systemFont(ofSize: 17) //LayoutKit source edited by Paul Wright to avoid background thread UIView init
     public static let defaultAlignment = Alignment.topLeading
     public static let defaultFlexibility = Flexibility.flexible
 }
