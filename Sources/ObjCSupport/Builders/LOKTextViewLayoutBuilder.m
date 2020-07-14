@@ -15,6 +15,7 @@
 @property (nonatomic, nullable) LOKAlignment *privateAlignment;
 @property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
 @property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) NSString *privateViewReuseGroup;
 @property (nonatomic, nullable) Class privateViewClass;
 
 @property (nonatomic, nullable) NSString *privateString;
@@ -58,6 +59,7 @@
                                                  layoutAlignment:self.privateAlignment
                                                      flexibility:self.privateFlexibility
                                                      viewReuseId:self.privateViewReuseId
+                                                  viewReuseGroup:self.privateViewReuseGroup
                                                        viewClass:self.privateViewClass
                                                        configure:self.privateConfigure];
     } else {
@@ -68,6 +70,7 @@
                                        layoutAlignment:self.privateAlignment
                                            flexibility:self.privateFlexibility
                                            viewReuseId:self.privateViewReuseId
+                                        viewReuseGroup:self.privateViewReuseGroup
                                              viewClass:self.privateViewClass
                                              configure:self.privateConfigure];
     }
@@ -111,6 +114,13 @@
 - (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKTextViewLayoutBuilder *(NSString * viewReuseId){
         self.privateViewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseGroup {
+    return ^LOKTextViewLayoutBuilder *(NSString * viewReuseGroup){
+        self.privateViewReuseGroup = viewReuseGroup;
         return self;
     };
 }

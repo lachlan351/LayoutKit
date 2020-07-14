@@ -40,6 +40,10 @@ class WrappedLayout: LOKLayout {
         return layout.viewReuseId
     }
 
+    var viewReuseGroup: String? {
+        return layout.viewReuseGroup
+    }
+
     let layout: Layout
     private init(layout: Layout) {
         self.layout = layout

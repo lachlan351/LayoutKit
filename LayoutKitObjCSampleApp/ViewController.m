@@ -131,7 +131,8 @@
 
     return [[RotationLayout alloc] initWithSublayout:layout
                                            alignment:LOKAlignment.center
-                                         viewReuseId:nil];
+                                         viewReuseId:nil
+                                      viewReuseGroup:nil];
 }
 
 @end

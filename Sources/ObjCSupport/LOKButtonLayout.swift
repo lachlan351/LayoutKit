@@ -28,6 +28,7 @@ import UIKit
                       alignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
+                      viewReuseGroup: String? = nil,
                       viewClass: UIButton.Type? = nil,
                       config: ((UIButton) -> Void)? = nil) {
         let insets: UIEdgeInsets?
@@ -66,6 +67,7 @@ import UIKit
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? ButtonLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             config: self.config)
         super.init(layout: layout)

@@ -25,6 +25,7 @@ import CoreGraphics
                       alignment: LOKAlignment?,
                       flexibility: LOKFlexibility?,
                       viewReuseId: String?,
+                      viewReuseGroup: String?,
                       viewClass: View.Type?,
                       sublayout: LOKLayout?,
                       configure: ((View) -> Void)? = nil) {
@@ -45,6 +46,7 @@ import CoreGraphics
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             viewClass: self.viewClass,
             sublayout: self.sublayout?.unwrapped,
             config: self.configure)

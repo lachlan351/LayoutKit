@@ -23,6 +23,10 @@ open class BaseLayout<V: View> {
     /// It is used to identify which views should be reused when animating from one layout to another.
     public let viewReuseId: String?
 
+    /// An identifier for layouts that produce same view
+    /// It is used to identify if view can be reused for another layout
+    open let viewReuseGroup: String?
+
     /// A configuration block that is run on the main thread after the view is created.
     public let config: ((V) -> Void)?
 
@@ -32,18 +36,20 @@ open class BaseLayout<V: View> {
 
     private let viewClass: View.Type
 
-    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: ((V) -> Void)?) {
+    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewReuseGroup: String? = nil, config: ((V) -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
         self.viewReuseId = viewReuseId
+        self.viewReuseGroup = viewReuseGroup
         self.viewClass = V.self
         self.config = config
     }
 
-    init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewClass: V.Type, config: ((V) -> Void)?) {
+    init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewReuseGroup: String? = nil, viewClass: V.Type, config: ((V) -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
         self.viewReuseId = viewReuseId
+        self.viewReuseGroup = viewReuseGroup
         self.viewClass = viewClass
         self.config = config
     }

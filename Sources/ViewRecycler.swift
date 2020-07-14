@@ -20,10 +20,9 @@ import UIKit
  Call `purgeViews()` to remove all unrecycled views from the view hierarchy.
  Call `markViewsAsRoot(views:)` to mark the top level views of generated view hierarchy
  */
-class ViewRecycler {
+final class ViewRecycler {
 
-    private var viewsById = [String: View]()
-    private var unidentifiedViews = Set<View>()
+    private var viewStorage = ViewRecyclerViewStorage()
     #if os(iOS) || os(tvOS)
     private let defaultLayerAnchorPoint = CGPoint(x: 0.5, y: 0.5)
     private let defaultTransform = CGAffineTransform.identity
@@ -42,11 +41,7 @@ class ViewRecycler {
         }
 
         rootView.walkNonRootSubviews { (view) in
-            if let viewReuseId = view.viewReuseId {
-                self.viewsById[viewReuseId] = view
-            } else {
-                self.unidentifiedViews.insert(view)
-            }
+            self.viewStorage.add(view: view)
         }
     }
 
@@ -54,10 +49,10 @@ class ViewRecycler {
      Returns a view for the layout.
      It may recycle an existing view or create a new view.
      */
-    func makeOrRecycleView(havingViewReuseId viewReuseId: String?, viewProvider: () -> View) -> View? {
+    func makeOrRecycleView(havingViewReuseId viewReuseId: String?, orViewReuseGroup viewReuseGroup: String?, viewProvider: () -> View) -> View? {
+
         // If we have a recyclable view that matches type and id, then reuse it.
-        if let viewReuseId = viewReuseId, let view = viewsById[viewReuseId] {
-            viewsById[viewReuseId] = nil
+        if let viewReuseId = viewReuseId, let view = self.viewStorage.popView(withReuseId: viewReuseId) {
 
             #if os(iOS) || os(tvOS)
             // Reset affine transformation and layer anchor point to their default values.
@@ -87,30 +82,26 @@ class ViewRecycler {
             return view
         }
 
+        if let viewGroup = viewReuseGroup, let view = self.viewStorage.popView(withReuseGroup: viewGroup) {
+            return view
+        }
+
         let providedView = viewProvider()
         providedView.type = .managed
-
-        // Remove the provided view from the list of cached views.
-        if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
-            viewsById[viewReuseId] = nil
-        } else {
-            unidentifiedViews.remove(providedView)
-        }
         providedView.viewReuseId = viewReuseId
+        providedView.viewReuseGroup = viewReuseGroup
+        self.viewStorage.remove(view: providedView)
         return providedView
     }
 
-    /// Removes all unrecycled views from the view hierarchy.
+    /// Removes all unrecycled views
     func purgeViews() {
-        for view in viewsById.values {
-            view.removeFromSuperview()
+        self.viewStorage.foreach { view in
+            if view.type == .managed {
+                view.removeFromSuperview()
+            }
         }
-        viewsById.removeAll()
-
-        for view in unidentifiedViews where view.type == .managed {
-            view.removeFromSuperview()
-        }
-        unidentifiedViews.removeAll()
+        self.viewStorage.removeAll()
     }
 
     func markViewsAsRoot(_ views: [View]) {
@@ -119,6 +110,7 @@ class ViewRecycler {
 }
 
 private var viewReuseIdKey: UInt8 = 0
+private var viewReuseGroupKey: UInt8 = 0
 private var typeKey: UInt8 = 0
 
 extension View {
@@ -148,6 +140,16 @@ extension View {
         }
         set {
             objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        }
+    }
+
+    // Identifies the reuseg roup this view belongs to
+    public internal(set) var viewReuseGroup: String? {
+        get {
+            return objc_getAssociatedObject(self, &viewReuseGroupKey) as? String
+        }
+        set {
+            objc_setAssociatedObject(self, &viewReuseGroupKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 

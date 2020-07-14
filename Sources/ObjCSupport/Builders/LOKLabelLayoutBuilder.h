@@ -27,6 +27,7 @@
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewReuseGroup)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UILabel *_Nonnull));

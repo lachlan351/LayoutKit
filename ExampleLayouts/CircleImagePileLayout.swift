@@ -18,7 +18,7 @@ open class CircleImagePileLayout: StackLayout<CircleImagePileView> {
 
     public let mode: Mode
 
-    public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {
+    public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil, viewReuseGroup: String? = nil) {
         self.mode = mode
         let sublayouts: [Layout] = imageNames.map { imageName in
             return SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
@@ -36,6 +36,7 @@ open class CircleImagePileLayout: StackLayout<CircleImagePileView> {
             alignment: alignment,
             flexibility: .inflexible,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup,
             sublayouts: sublayouts)
     }
 

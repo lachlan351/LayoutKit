@@ -17,10 +17,11 @@ open class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, C:
 
     private let cellWidth: CGFloat
     private let sectionLayouts: [Section<C>]
-    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], alignment: Alignment = .topFill, viewReuseId: String? = nil, config: ((V) -> Void)? = nil) {
+    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], alignment: Alignment = .topFill, viewReuseId: String? = nil,
+                viewReuseGroup: String? = nil, config: ((V) -> Void)? = nil) {
         self.cellWidth = cellWidth
         self.sectionLayouts = sectionLayouts
-        super.init(alignment: alignment, flexibility: Flexibility(horizontal: Flexibility.defaultFlex, vertical: nil), viewReuseId: viewReuseId, config: config)
+        super.init(alignment: alignment, flexibility: Flexibility(horizontal: Flexibility.defaultFlex, vertical: nil), viewReuseId: viewReuseId, viewReuseGroup: viewReuseGroup, config: config)
     }
 
     // Measure the sections/items with the fixed width and unlimited height.

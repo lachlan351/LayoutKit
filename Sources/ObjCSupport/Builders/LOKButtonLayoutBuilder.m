@@ -15,6 +15,7 @@
 @property (nonatomic, nullable) LOKAlignment *privateAlignment;
 @property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
 @property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) NSString *privateViewReuseGroup;
 @property (nonatomic, nullable) Class privateViewClass;
 
 @property (nonatomic) LOKButtonLayoutType privateType;
@@ -49,6 +50,7 @@
                                        alignment:self.privateAlignment
                                      flexibility:self.privateFlexibility
                                      viewReuseId:self.privateViewReuseId
+                                  viewReuseGroup:self.privateViewReuseGroup
                                        viewClass:self.privateViewClass
                                           config:self.privateConfigure];
 }
@@ -105,6 +107,13 @@
 - (LOKButtonLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKButtonLayoutBuilder *(NSString * viewReuseId){
         self.privateViewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseGroup {
+    return ^LOKButtonLayoutBuilder *(NSString * viewReuseGroup){
+        self.privateViewReuseGroup = viewReuseGroup;
         return self;
     };
 }

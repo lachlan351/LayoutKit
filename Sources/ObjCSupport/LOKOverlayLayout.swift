@@ -22,6 +22,7 @@ import Foundation
                       alignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
+                      viewReuseGroup: String? = nil,
                       viewClass: View.Type? = nil,
                       configure: ((View) -> Void)? = nil) {
         self.primaryLayouts = primaryLayouts
@@ -37,6 +38,7 @@ import Foundation
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? primaryLayouts.first?.flexibility.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
+            viewReuseGroup: viewReuseGroup, 
             viewClass: self.viewClass,
             config: self.configure))
     }
